@@ -68,4 +68,5 @@ class Menu extends Controller
     {
         $this->menu->del(input('param.id'));
     }
+    
 }

@@ -28,12 +28,15 @@ class MenuLogic  extends  Controller
     }
     
 
+    //获取详情
     public function  getInfo($id)
     {
 
     	return  Menu::get($id);
 
 	}
+
+
 
     //添加数据
     public function  create($post)
@@ -53,6 +56,8 @@ class MenuLogic  extends  Controller
     		$this->error('添加失败');
 
     }
+
+
 
     //修改数据
     public  function  update($post)
@@ -75,6 +80,7 @@ class MenuLogic  extends  Controller
 
 
 
+    //删除数据
     public function   del($id)
     {
 
@@ -82,7 +88,7 @@ class MenuLogic  extends  Controller
     		$this->success('删除成功','menu/index');
     	}
 
-    	$thi->error('删除失败');
+    	$this->error('删除失败');
 
     }
 }
