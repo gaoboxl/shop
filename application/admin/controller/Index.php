@@ -19,7 +19,6 @@ class Index  extends  Base
 
 
         $nav_list  =  model('menu')->where(['flag'=>0,'status'=>0])->select();
-        //pr($nav_list);die;
         $this->assign('nav_list',$nav_list);
         return view();
     }

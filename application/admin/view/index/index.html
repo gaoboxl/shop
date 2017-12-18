@@ -35,7 +35,7 @@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                     <span class="clear">
                                    <span class="block m-t-xs"><strong class="font-bold">美丽攻略.半永久</strong></span>
-                                    <span class="text-muted text-xs block">{$admin_info.name}<b class="caret"></b></span>
+                                    <span class="text-muted text-xs block">{$admin_info.name|default=''}<b class="caret"></b></span>
                                     </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
@@ -83,7 +83,7 @@
                                 {if($data['id'] eq $child['pid'])}
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a class="J_menuItem" href="{$child.url}">{$child.name}</a>
+                                        <a class="J_menuItem" href="{:url($child.url)}">{$child.name}</a>
                                     </li>
                                 </ul>
                                 {/if}

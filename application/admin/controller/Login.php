@@ -31,7 +31,10 @@ class Login extends Controller
     //登陆处理
     public function login(Request $request)
     {  
-        return   $this->login->loginCheck($request->param());
+        if(Request::instance()->isPost()){
+
+            $this->login->loginCheck($request->param());
+         }
     }
 
 
@@ -41,8 +44,7 @@ class Login extends Controller
     {
 
         Session::clear();
-        $this->redirect('/admin/login');
-
+        $this->redirect('login/index');
     }
 
 

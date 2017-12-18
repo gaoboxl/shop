@@ -7,7 +7,7 @@ use app\common\validate\AdminValidate;
 use think\Cache;
 use think\Session;
 
-class LoginLogic 
+class LoginLogic  extends Controller
 {
 
     /**
@@ -23,23 +23,22 @@ class LoginLogic
 
     public   function   loginCheck($post)
     {
-            // Cache::rm('loginAttempts'); die;
 
             $result =  $this->validateLogin($post);
 
             if($result){
-                return  api(500,$result);
+               $this->error($result);
             }
 
             //验证失败次数
             if($this->hasTooManyLoginAttempts($post['name'])){
-                return  api(500,'登录失败次数过多请24小时后重试');
+                $this->error('失败次数过多请稍后再试');
             }
 
             //验证用户状态
             $admin =  Admin::get(['name'=>$post['name'],'status'=>0]);
             if(!$admin){
-                return  api(500,'账户不存在或被禁用');
+                $this->error('账户不存在或被禁用');
             }
 
             //验证密码
@@ -47,12 +46,12 @@ class LoginLogic
 
                 $this->incrementLoginAttempts();
                 $this->recordLoginName($post['name']);
-                return  api(500,'账户或密码错误');
+                $this->error('账号或密码错误');
             }
 
             Cache::rm('loginAttempts'); 
             Session::set('admin_info',$admin);
-            return  api(200,'登录成功');
+            $this->success('登陆成功','Index/index');
 
     }
 
