@@ -19,7 +19,7 @@ class Base extends Controller
         if($admin_info){
             $this->assign('admin_info',$admin_info);
         }else{
-            $this->redirect('admin/login');
+            $this->redirect('login/login');
         }
 
     }
