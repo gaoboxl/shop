@@ -7,7 +7,7 @@ use app\admin\controller\Base;
 
 class Index  extends  Base
 {   
-    
+
     public function   __construct()
     {
         parent::__construct();
@@ -16,6 +16,11 @@ class Index  extends  Base
 	//首页
     public function index()
     {
+
+
+        $nav_list  =  model('menu')->where(['flag'=>0,'status'=>0])->select();
+        //pr($nav_list);die;
+        $this->assign('nav_list',$nav_list);
         return view();
     }
 

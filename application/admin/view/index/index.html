@@ -68,37 +68,29 @@
                             <span class="nav-label">主页</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa fa-gear"></i>
-                            <span class="nav-label">系统</span>
-                            <span class="fa arrow"></span>
-                        </a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a class="J_menuItem" href="{:url('admin/order/index')}">订单</a>
-                            </li>
+                    {notempty name="nav_list"}
+                        {volist name="nav_list" id="data"}
+                        <li>
+                            {if($data['pid'] eq 0)}
+                            <a href="#">
+                                <i class="fa fa fa-gear"></i>
+                                <span class="nav-label">{$data.name}</span>
+                                <span class="fa arrow"></span>
+                            </a>
+                            {/if}
 
-                            
-                            <!-- <li>
-                                <a class="J_menuItem" href="500.html">500</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="lists.html">列表</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="create.html">添加</a>
-                            </li>
-                            <li>
-                                <a class="J_menuItem" href="login.html">登陆</a>
-                            </li>
-
-                            <li>
-                                <a class="J_menuItem" href="chat.html">聊天</a>
-                            </li> -->
-                            
-                        </ul>
-                    </li>
+                            {volist name="nav_list" id="child"}
+                                {if($data['id'] eq $child['pid'])}
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a class="J_menuItem" href="{$child.url}">{$child.name}</a>
+                                    </li>
+                                </ul>
+                                {/if}
+                            {/volist}
+                        </li>
+                        {/volist}
+                    {/notempty}
                   
                     <li class="line dk"></li>
                     

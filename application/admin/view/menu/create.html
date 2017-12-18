@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title> 添加数据 </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__admin_style__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__admin_style__/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__admin_style__/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="__admin_style__/css/animate.css" rel="stylesheet">
+    <link href="__admin_style__/css/style.css?v=4.1.0" rel="stylesheet">
+
+    <!-- 文件上传 -->
+    <link rel="stylesheet" type="text/css" href="__admin_style__/js/webuploader-0.1.5/webuploader.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="./style.css" /> -->
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        
+       
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>列表数据 <small>添加数据</small></h5>
+                        
+                    </div>
+                    <div class="ibox-content">
+                        <form method="get" class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">文本:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="请输入"> 
+                                    <span class="help-block m-b-none">帮助文本，可能会超过一行，以块级元素显示</span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">文本:</label>
+                                <div class="col-sm-4">
+                                    <input id="hello" class="laydate-icon form-control layer-date">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">选择:</label>
+
+                                <div class="col-sm-4">
+                                    <select class="form-control m-b" name="account">
+                                        <option>选项 1</option>
+                                        <option>选项 2</option>
+                                        <option>选项 3</option>
+                                        <option>选项 4</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">描述:</label>
+
+                                <div class="col-sm-4">
+                                    <textarea class="form-control" name="account" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">封面:</label>
+
+                                <div class="col-sm-4">
+                                        <div id="uploader-demo">
+                                            <!--用来存放item-->
+                                            <div id="fileList" class="uploader-list"></div>
+                                            <div id="filePicker">选择图片<i class="fa fa-upload"></i></div>
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">复选框:</label>
+                                <div class="col-sm-10">
+
+                                    <div class="checkbox i-checks">
+                                        <label> <input type="checkbox" value=""> <i></i> 选项1</label> 
+                                        <label><input type="checkbox" value="" checked=""> <i></i> 选项2（选中）</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">单选框:</label>
+                                <div class="col-sm-4">
+
+                                    <div class="radio i-checks">
+                                        <label><input type="radio" value="option1" name="a"> <i></i> 选项1</label>
+                                        <label><input type="radio" checked="" value="option2" name="a"> <i></i> 选项2（选中）</label>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">状态:</label>
+
+                                <div class="col-sm-4">
+                                    <div class="switch">
+                                        <div class="onoffswitch">
+                                            <input type="checkbox" checked="" class="onoffswitch-checkbox" id="example1">
+                                            <label class="onoffswitch-label" for="example1">
+                                                <span class="onoffswitch-inner"></span>
+                                                <span class="onoffswitch-switch"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit">保存内容</button>
+                                    <button class="btn btn-white" type="button" onClick="javascript :history.back(-1);" >取消</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script src="__admin_style__/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__admin_style__/js/bootstrap.min.js?v=3.3.6"></script>
+
+    <!-- 自定义js -->
+    <script src="__admin_style__/js/content.js?v=1.0.0"></script>
+    <!-- 文件上传 -->
+    <script type="text/javascript" src="__admin_style__/js/webuploader-0.1.5/webuploader.js"></script>
+    <!-- 日期 -->
+    <script src="__admin_style__/js/plugins/layer/laydate/laydate.js"></script>
+    <!-- iCheck -->
+    <script src="__admin_style__/js/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+             //外部js调用日期
+            laydate({
+                elem: '#hello', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+                event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+            });
+
+
+            //文件上传
+            // 初始化Web Uploader
+            var uploader = WebUploader.create({
+
+                // 选完文件后，是否自动上传。
+                auto: true,
+
+                // swf文件路径
+                swf:'__admin_style__/js/Uploader.swf',
+
+                // 文件接收服务端。
+                server: 'http://webuploader.duapp.com/server/fileupload.php',
+
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: '#filePicker',
+
+                // 只允许选择图片文件。
+                accept: {
+                    title: 'Images',
+                    extensions: 'gif,jpg,jpeg,bmp,png',
+                    mimeTypes: 'image/*'
+                }
+            });
+
+
+            // 文件上传成功回调
+            uploader.on( 'uploadSuccess', function( file ) {
+                $( '#'+file.id ).addClass('upload-state-done');
+            });
+
+
+        });
+    </script>
+
+    
+    
+
+</body>
+
+</html>
