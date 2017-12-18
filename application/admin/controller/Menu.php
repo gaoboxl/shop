@@ -3,80 +3,69 @@ namespace app\admin\controller;
 
 use think\Controller;
 use think\Request;
-
+use app\admin\logic\MenuLogic;
 
 class Menu extends Controller
 {
 
+    protected $menu;
+
+    public function  __construct(MenuLogic $menu)
+    {
+        parent::__construct();
+
+        $this->menu =  $menu;
+
+    }
+
     //菜单列表
     public function index()
     {
+        $menus =  $this->menu->getList();
+        $this->assign('menus',$menus);
         return view();
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
+
+    //添加
     public function create()
-    {
+    {   
+        $pid  =  input('param.pid','0');
+        $this->assign('pid',$pid);
+
         return view();
     }
 
-    /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
-     */
+
+
+    //添加数据
     public function save(Request $request)
     {
-        //
+
+        $this->menu->create($request->param());
     }
 
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
+    
+
+    //编辑页
+    public function edit()
     {
-        //
+        $id  = input('param.id');
+        $menu = $this->menu->getInfo($id);
+
+        $this->assign('menu',$menu);
+        return view();
     }
 
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
+    //修改数据
+    public function update(Request $request)
     {
-        //
+        $this->menu->update($request->param());
     }
 
-    /**
-     * 保存更新的资源
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
+    //删除数据
+    public function delete()
     {
-        //
-    }
-
-    /**
-     * 删除指定资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function delete($id)
-    {
-        //
+        $this->menu->del(input('param.id'));
     }
 }

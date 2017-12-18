@@ -29,18 +29,18 @@
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>菜单列表 <small>添加数据</small></h5>
+                        <h5>菜单列表 <small>编辑数据</small></h5>
                         
                     </div>
                     <div class="ibox-content">
-                        <form method="post" class="form-horizontal" action="{:url('menu/save')}">
+                        <form method="post" class="form-horizontal" action="{:url('menu/update')}">
 
-                            <input type="hidden" name="pid" value="{$pid}">
-  
+                            <input type="hidden" name="pid" value="{$menu.pid}">
+                            <input type="hidden" name="id" value="{$menu.id}">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">菜单名称:</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" placeholder="请输入菜单名称" name="name"> 
+                                    <input type="text" class="form-control" placeholder="请输入菜单名称" name="name" value="{$menu.name|default=''}"> 
                                     
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">路由地址:</label>
                                 <div class="col-sm-4">
-                                    <input id="hello" class="laydate-icon form-control layer-date" placeholder="请输入路由地址" name="url">
+                                    <input id="hello" class="laydate-icon form-control layer-date" placeholder="请输入路由地址" name="url" value="{$menu.url|default=''}">
                                     <span class="help-block m-b-none">例(admin/index/index)</span>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Icon:</label>
                                 <div class="col-sm-4">
-                                    <input id="hello" class="laydate-icon form-control layer-date" placeholder="请输入菜单icon" name="icon">
+                                    <input id="hello" class="laydate-icon form-control layer-date" placeholder="请输入菜单icon" name="icon" value="{$menu.icon|default=''}">
                                     <span class="help-block m-b-none">子菜单不需要icon</span>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                 <div class="col-sm-4">
                                     <div class="switch">
                                         <div class="onoffswitch">
-                                            <input type="checkbox" checked="" class="onoffswitch-checkbox" id="example1" name="flag">
+                                            <input type="checkbox" {if($menu.flag eq 0)} checked="" {/if} class="onoffswitch-checkbox" id="example1" name="flag">
                                             <label class="onoffswitch-label" for="example1">
                                                 <span class="onoffswitch-inner" ></span>
                                                 <span class="onoffswitch-switch"></span>

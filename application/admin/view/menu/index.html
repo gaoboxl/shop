@@ -26,110 +26,63 @@
             <div class="col-sm-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>数据列表</h5>
+                        <h5>菜单列表</h5>
                         <div class="ibox-tools">
-                            
                         </div>
                     </div>
                     <div class="ibox-content">
                         <div class="col-sm-1">
-                            <a  href="{:url('menu/create')}" class="btn btn-success ">添加</a>
+                            <a   class="btn btn-primary " href="{:url('menu/create')}">添加</a>
                         </div>
-
-                        <div class="col-sm-1">
-                            <a   class="btn btn-primary " data-toggle="modal" data-target="#myModal">弹框</a>
-                        </div>
-
-                        <div class="col-sm-4">
-
-                            <div class="input-group">
-                                <input type="text" placeholder="请输入你要搜索的内容" class="input form-control">
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn btn-primary"> 
-                                        <i class="fa fa-search"></i> 搜索
-                                    </button>
-                                </span>
-                            </div>
-
-                        </div>
-
 
                         <table class="table table-striped table-bordered table-hover " id="editable">
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>名称</th>
+                                    <th>菜单名称</th>
                                     <th>时间</th>
-                                    <th>状态</th>
+                                    <th>导航显示</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {notempty name="menus" }
+                                    {volist name="menus" id="menu"}
+                                        <tr class="gradeX">
+                                            <td>{$menu.id}</td>
+                                            <td>{$menu.name}</td>
+                                            <td>{$menu.url} </td>
+                                            <td>
+                                                {if($menu.flag eq 1) }
+                                                    <span class="label">否</span>
+                                                {else /}
+                                                    <span class="label label-primary">是</span>
+                                                {/if}
+                                            </td>
+                                            <td class="center">
+
+                                                {if($menu.pid eq 0)}
+                                                <a href="{:url('menu/create',array('pid'=>$menu['id']))}" class=" " title="添加">
+                                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                                </a>&nbsp;
+                                                {/if}
+                                                <a href="{:url('menu/edit',array('id'=>$menu['id']))}" class="" title="编辑">
+                                                   <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                                </a>&nbsp;
+                                                <a href="{:url('menu/delete',array('id'=>$menu['id']))}" class="" title="删除">
+                                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                                </a>&nbsp;
+
+                                            </td>
+                                        </tr>
+                                    {/volist}
+                                {else /}
 
                                 <tr class="gradeX">
-                                    <td>1</td>
-                                    <td>小李子</td>
-                                    <td>2017-11-26 </td>
-                                    <td>
-                                        <a onclick="" ="status(1,1)" > <i class="fa fa-check"></i> 启用 </a>
-                                        <a onclick="" ="status(1,0) "> <i class="fa fa-times"></i> 禁用 </a>
-                                    </td>
-                                    <td class="center">
-                                        <a href="" class=" " title="添加">
-                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                        </a>&nbsp;
-                                        <a href="" class="" title="编辑">
-                                           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                        </a>&nbsp;
-                                        <a href="" class="" title="删除">
-                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                        </a>&nbsp;
-                                    </td>
+                                     <td colspan="5" align="center"><h3><i class="fa fa-frown-o"></i> 暂无数据 !</h3> </td>
                                 </tr>
-
-                                <tr class="gradeX">
-                                    <td>1</td>
-                                    <td>小李子</td>
-                                    <td>2017-11-26 </td>
-                                    <td>
-                                        <a > <i class="fa fa-check"></i> 启用 </a>
-                                        <a > <i class="fa fa-times"></i> 禁用 </a>
-                                    </td>
-                                    <td class="center">
-                                        <a href="" class=" " title="添加">
-                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                        </a>&nbsp;
-                                        <a href="" class="" title="编辑">
-                                           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                        </a>&nbsp;
-                                        <a href="" class="" title="删除">
-                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                        </a>&nbsp;
-                                    </td>
-                                </tr>
-
-                                <tr class="gradeX">
-                                    <td>1</td>
-                                    <td>小李子</td>
-                                    <td>2017-11-26 </td>
-                                    <td>
-                                        <a > <i class="fa fa-check"></i> 启用 </a>
-                                        <a > <i class="fa fa-times"></i> 禁用 </a>
-                                    </td>
-                                    <td class="center">
-                                        <a  title="添加">
-                                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                        </a>&nbsp;
-                                        <a href="" class="" title="编辑">
-                                           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                                        </a>&nbsp;
-                                        <a title="删除" onclick="del(1)">
-                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                        </a>&nbsp;
-                                    </td>
-                                </tr>
-                               
-                                
+                                {/notempty}
+                              
                             </tbody>
                            
                         </table>
@@ -139,25 +92,7 @@
                                <!--  <div class="dataTables_info" id="DataTables_Table_0_info" role="alert" aria-live="polite" aria-relevant="all">显示 1 到 10 项，共 57 项</div> -->
                             </div>
                             <div class="col-sm-6">
-                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                                    <ul class="pagination">
-                                        <li class="paginate_button previous disabled" aria-controls="DataTables_Table_0" tabindex="0" id="DataTables_Table_0_previous">
-                                            <a href="#">上一页</a>
-                                        </li>
-                                        <li class="paginate_button active" aria-controls="DataTables_Table_0" tabindex="0">
-                                            <a href="#">1</a>
-                                        </li>
-                                        <li class="paginate_button" aria-controls="DataTables_Table_0" tabindex="0">
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li class="paginate_button" aria-controls="DataTables_Table_0" tabindex="0">
-                                            <a href="#">3</a>
-                                        </li>
-                                        <li class="paginate_button next" aria-controls="DataTables_Table_0" tabindex="0" id="DataTables_Table_0_next">
-                                            <a href="#">下一页</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                              
                             </div>
                         </div>
 
@@ -166,47 +101,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 弹框 -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
-                                    <div class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">用户名：</label>
-
-                                            <div class="col-sm-8">
-                                                <input type="email" placeholder="用户名" class="form-control"> 
-                                               <!--  <span class="help-block m-b-none">请输入您注册时所填的E-mail</span> -->
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label">密码：</label>
-                                            <div class="col-sm-8">
-                                                <input type="password" placeholder="密码" class="form-control">
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-info" >确认</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
 
     <!-- 全局js -->
     <script src="__admin_style__/js/jquery.min.js?v=2.1.4"></script>
