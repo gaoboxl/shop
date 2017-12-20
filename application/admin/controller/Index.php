@@ -4,6 +4,7 @@ namespace app\admin\controller;
 use think\Session;
 use think\Controller;
 use app\admin\controller\Base;
+use app\admin\logic\MenuLogic;
 
 class Index  extends  Base
 {   
@@ -17,8 +18,8 @@ class Index  extends  Base
     public function index()
     {
 
+        $nav_list =  MenuLogic::navList();
 
-        $nav_list  =  model('menu')->where(['flag'=>0,'status'=>0])->select();
         $this->assign('nav_list',$nav_list);
         return view();
     }

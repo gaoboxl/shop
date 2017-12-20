@@ -58,22 +58,20 @@
                            <div class="logo-element">美丽攻略
                         </div>
                     </li>
-
-                    <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
-                        <span class="ng-scope">分类</span>
-                    </li>
                     <li>
                         <a class="J_menuItem" href="{:url('admin/index/welcome')}">
                             <i class="fa fa-home"></i>
                             <span class="nav-label">主页</span>
                         </a>
                     </li>
+                    <li class="line dk"></li>
+                    
                     {notempty name="nav_list"}
                         {volist name="nav_list" id="data"}
                         <li>
                             {if($data['pid'] eq 0)}
                             <a href="#">
-                                <i class="fa fa fa-gear"></i>
+                                <i class="{$data.icon}"></i>
                                 <span class="nav-label">{$data.name}</span>
                                 <span class="fa arrow"></span>
                             </a>
@@ -92,7 +90,7 @@
                         {/volist}
                     {/notempty}
                   
-                    <li class="line dk"></li>
+                   
                     
 
                     

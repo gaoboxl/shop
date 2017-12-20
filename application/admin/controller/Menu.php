@@ -4,8 +4,9 @@ namespace app\admin\controller;
 use think\Controller;
 use think\Request;
 use app\admin\logic\MenuLogic;
+use app\admin\controller\Base;
 
-class Menu extends Controller
+class Menu extends Base
 {
 
     protected $menu;

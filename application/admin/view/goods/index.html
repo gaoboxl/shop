@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> 数据列表 </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="__admin_style__/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="__admin_style__/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="__admin_style__/css/animate.css" rel="stylesheet">
+    <link href="__admin_style__/css/style.css?v=4.1.0" rel="stylesheet">
+    <!-- 表格样式 -->
+    <link href="__admin_style__/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+   
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+       
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>数据列表</h5>
+                        <div class="ibox-tools">
+                            
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="col-sm-1">
+                            <a   class="btn btn-primary " href="{:url('goods/create')}">添加</a>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <form method="get" action="{:url('goods/index')}">
+                                <div class="input-group">
+                                    <input type="text" placeholder="请输入管理员名称"  name="keywords" value="{$keywords|default=''}" class="input form-control">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn btn-primary"> 
+                                            <i class="fa fa-search"></i> 搜索
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <table class="table table-striped table-bordered table-hover " id="editable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>名称</th>
+                                    <th>时间</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {notempty name="goods_list"}
+                                    {volist name="goods_list" id="goods"}
+                                        <tr class="gradeX">
+                                            <td>{$goods.goods_id}</td>
+                                            <td>{$goods.goods_name}</td>
+                                            <td>{$goods.create_time} </td>
+                                            <td>
+                                                {if($goods.status eq 1) }
+                                                    <a class="label" href="{:url('goods/status',array('id'=>$goods['goods_id'],'status'=>$goods['status']))}">禁用</a>
+                                                {else /}
+                                                    <a class="label label-primary" href="{:url('goods/status',array('id'=>$goods['goods_id'],'status'=>$goods['status']))}" >正常</a>
+                                                {/if}
+                                            </td>
+                                            <td class="center">
+                                                <a href="{:url('goods/auth',array('id'=>$goods['goods_id']))}" class=" " title="权限">
+                                                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+                                                </a>&nbsp;
+                                                <a  title="编辑">
+                                                   <span class="glyphicon glyphicon-edit" onclick="sub({$goods.goods_id})" data-toggle="modal" data-target="#myModal"></span>
+                                                </a>&nbsp;
+                                                <a href="{:url('goods/delete',array('id'=>$goods['goods_id']))}" class="" title="删除">
+                                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                                </a>&nbsp;
+                                            </td>
+                                        </tr>
+                                    {/volist}
+
+                                {else / }
+                                    <tr class="gradeX">
+                                        <td colspan="5" align="center"><h3><i class="fa fa-frown-o"></i> 暂无数据 !</h3> </td>
+                                    </tr>
+                                {/notempty}
+                            </tbody>
+                           
+                        </table>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                               
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    {notempty name="goods_list"}
+                                        {$goods_list->render()}
+                                    {/notempty}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <!-- 全局js -->
+    <script src="__admin_style__/js/jquery.min.js?v=2.1.4"></script>
+    <script src="__admin_style__/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="__admin_style__/js/plugins/jeditable/jquery.jeditable.js"></script>
+
+    <!-- 自定义js -->
+    <script src="__admin_style__/js/plugins/layer/layer.min.js" ></script>
+    
+   
+
+</body>
+
+</html>

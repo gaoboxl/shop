@@ -3,6 +3,7 @@ namespace app\admin\logic;
 
 use think\Controller;
 use app\common\model\Menu;
+use think\Session;
 //use app\common\validate\MenuValidate;
 
 class MenuLogic  extends  Controller
@@ -28,6 +29,20 @@ class MenuLogic  extends  Controller
     }
     
 
+    public static function  navList()
+    {   
+        $admin_rule   =  Session::get('admin_info.rule_id');
+        return  Menu::where('flag',0)->whereIn('id',$admin_rule)->select();
+    }
+
+
+    public static function  getByRule()
+    {   
+        $admin_rule   =  Session::get('admin_info.rule_id');
+        return  Menu::whereIn('id',$admin_rule)->column('url');
+    }
+
+
     //获取详情
     public function  getInfo($id)
     {
@@ -35,7 +50,6 @@ class MenuLogic  extends  Controller
     	return  Menu::get($id);
 
 	}
-
 
 
     //添加数据

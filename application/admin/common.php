@@ -50,3 +50,15 @@ function excel($fileName = '', $headArr = [], $data = []) {
     exit();
 
 }
+
+
+
+/**
+ * 创建目录
+ * @param $path
+ */
+function create_dir($path){
+    if(!is_dir($path)){
+        mkdir(iconv("UTF-8", "GBK",$path),0777,true);
+    }
+}
