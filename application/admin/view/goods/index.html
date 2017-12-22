@@ -39,7 +39,7 @@
                         <div class="col-sm-4">
                             <form method="get" action="{:url('goods/index')}">
                                 <div class="input-group">
-                                    <input type="text" placeholder="请输入管理员名称"  name="keywords" value="{$keywords|default=''}" class="input form-control">
+                                    <input type="text" placeholder="请输入商品名称"  name="keywords" value="{$keywords|default=''}" class="input form-control">
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn btn btn-primary"> 
                                             <i class="fa fa-search"></i> 搜索
@@ -74,11 +74,8 @@
                                                 {/if}
                                             </td>
                                             <td class="center">
-                                                <a href="{:url('goods/auth',array('id'=>$goods['goods_id']))}" class=" " title="权限">
-                                                    <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-                                                </a>&nbsp;
-                                                <a  title="编辑">
-                                                   <span class="glyphicon glyphicon-edit" onclick="sub({$goods.goods_id})" data-toggle="modal" data-target="#myModal"></span>
+                                                <a  href="{:url('goods/edit',array('id'=>$goods['goods_id']))}" title="编辑">
+                                                   <span class="glyphicon glyphicon-edit"  ></span>
                                                 </a>&nbsp;
                                                 <a href="{:url('goods/delete',array('id'=>$goods['goods_id']))}" class="" title="删除">
                                                      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

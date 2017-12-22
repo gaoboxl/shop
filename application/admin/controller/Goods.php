@@ -6,6 +6,8 @@ use think\Controller;
 use think\Request;
 use app\admin\controller\Base;
 use app\admin\logic\GoodsLogic;
+use app\common\model\Category;
+use app\common\model\Project;
 
 class Goods extends Base
 {
@@ -36,7 +38,11 @@ class Goods extends Base
     //添加页
     public function create()
     {
+        $category =  Category::all();
+        $project  =  Project::all();
 
+        $this->assign('category',$category);
+        $this->assign('project',$project);
         return view();
     }
 
@@ -48,22 +54,31 @@ class Goods extends Base
 
 
     //编辑数据
-    public function edit($id)
+    public function edit()
     {
-        //
+
+        $category =  Category::all();
+        $goods  =  $this->goods->getInfo(input('param.id'));
+        $goods['pro_id'] =  explode(',',$goods['pro_id']);
+        $project  =  Project::all();  
+        
+        $this->assign('project',$project);
+        $this->assign('category',$category);
+        $this->assign('goods',$goods);
+        return view();
     }
 
     //修改数据
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->goods->update($request->param());
     }
 
 
 
     //删除数据
-    public function delete($id)
+    public function delete()
     {
-        //
+        $this->goods->del(input('param.id'));
     }
 }
